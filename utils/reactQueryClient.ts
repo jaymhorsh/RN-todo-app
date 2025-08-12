@@ -5,10 +5,24 @@ export const queryClient = new QueryClient({
     queries: {
       refetchOnWindowFocus: false,
       retry: 2,
-      staleTime: 1000 * 60, // 1 minute
+      refetchOnReconnect: true,
+      staleTime: 1000 * 60,
+      retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
     },
     mutations: {
       retry: 1,
+      retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
+      networkMode: 'offlineFirst',
     },
   },
-}); 
+});
+
+// staleTime: 1000 * 60 * 5, // 5 minutes
+// gcTime: 1000 * 60 * 30, // 30 minutes
+// retry: 3,
+// retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
+// refetchOnWindowFocus: true,
+// refetchOnReconnect: true,
+// refetchOnMount: true,
+// networkMode: "offlineFirst",
+// retryOnMount: true,

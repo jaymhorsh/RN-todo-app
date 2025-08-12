@@ -18,17 +18,17 @@ const TodoInput: React.FC<TodoInputProps> = ({
   };
 
   return (
-    <View className="mb-6">
+    <View className="mb-4">
       <View
-        className={`flex-row items-center bg-gray-200 h-[60px] rounded-full px-4 ${
-          error ? 'border border-red-500' : ''
+        className={`flex-row items-center bg-neutral-background h-[56px] rounded-2xl px-4 border ${
+          error ? 'border-red-500' : 'border-neutral-line'
         } ${containerClassName}`}
       >
         {leftIcon}
         <TextInput
-          placeholderTextColor="#848484"
+          placeholderTextColor="#767E8C"
           secureTextEntry={secureTextEntry}
-          className={`flex-1 text-black text-center text-lg h-16 px-2 ${inputClassName}`}
+          className={`flex-1 text-neutral-primary text-base h-14 px-2 ${inputClassName}`}
           {...props}
         />
         {isPassword && (
@@ -37,7 +37,7 @@ const TodoInput: React.FC<TodoInputProps> = ({
           </Pressable>
         )}
       </View>
-      {error && <Text className="text-red-500 text-sm mt-2 px-4">{error}</Text>}
+      {error && <Text className="text-red-500 text-xs mt-1 px-2">{error}</Text>}
     </View>
   );
 };

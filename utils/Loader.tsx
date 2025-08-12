@@ -1,19 +1,13 @@
 import React from 'react';
 import { View, Modal, ActivityIndicator, StyleSheet } from 'react-native';
-const Loader = ({
-  modalVisible,
-  setModalVisible,
-}: {
-  modalVisible: boolean;
-  setModalVisible: (visible: boolean) => void;
-}) => {
+const Loader = ({ modalVisible, setModalVisible }: { modalVisible: boolean; setModalVisible: (visible: boolean) => void }) => {
   return (
     <Modal
       animationType="fade"
       transparent={true}
       visible={modalVisible}
       onRequestClose={() => {
-       setModalVisible(modalVisible);
+        setModalVisible(modalVisible);
       }}
     >
       <View style={styles.centeredView}>

@@ -1,20 +1,57 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { secureStorage } from '../secureStorage';
 
-export const setToken = async (value: string) => {
+export const setToken = async (name: string, value: string): Promise<void> => {
   try {
-    await AsyncStorage.setItem('token', value);
-  } catch (e) {
-    console.log(e);
+    await secureStorage.setItem(name, value);
+  } catch (error) {
+    console.error('Failed to set token:', error);
   }
 };
 
-export const getToken = async () => {
+export const deleteToken = async (name: string): Promise<void> => {
   try {
-    const value = await AsyncStorage.getItem('token');
-    if (value !== null) {
-      return value;
-    }
-  } catch (e) {
-    console.log(e);
+    await secureStorage.deleteItem(name);
+  } catch (error) {
+    console.error('Failed to delete token:', error);
+    throw new Error('Failed to delete authentication token');
+  }
+};
+
+export const removeToken = async (name: string): Promise<void> => {
+  try {
+    await secureStorage.deleteItem(name);
+  } catch (error) {
+    console.error('Failed to remove token:', error);
+    throw new Error('Failed to remove authentication token');
+  }
+};
+
+export const getToken = async (name: string): Promise<string | null> => {
+  try {
+    const value = await secureStorage.getItem(name);
+    return value;
+  } catch (error) {
+    console.error('Failed to get token:', error);
+    return null;
+  }
+};
+
+export const clearAllTokens = async (): Promise<void> => {
+  try {
+    const keys = ['token', 'user', 'refreshToken'];
+    await Promise.all(keys.map(key => deleteToken(key)));
+  } catch (error) {
+    console.error('Failed to clear all tokens:', error);
+    throw new Error('Failed to clear authentication data');
+  }
+};
+
+export const hasValidToken = async (): Promise<boolean> => {
+  try {
+    const token = await getToken('token');
+    return token !== null && token.length > 0;
+  } catch (error) {
+    console.error('Failed to check token validity:', error);
+    return false;
   }
 };

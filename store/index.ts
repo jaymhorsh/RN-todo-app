@@ -12,4 +12,9 @@ export const useAppStore = create<AppState>((set) => ({
   loading: false,
   setUser: (user) => set({ user }),
   setLoading: (loading) => set({ loading }),
-})); 
+}));
+
+export { useAppIconStore } from './appIconStore';
+export { useAuthStore } from './authStore';
+export { useThemeStore } from './themeStore';
+

@@ -10,13 +10,13 @@ This project is a boilerplate for an Expo-managed React Native application.
 1. Clone the repository.
 2. Navigate to the project directory.
 3. Install dependencies:
-    ```
-    npm install
-    ```
-    or
-    ```
-    yarn install
-    ```
+   ```
+   npm install
+   ```
+   or
+   ```
+   yarn install
+   ```
 
 ## Available Scripts
 
@@ -79,4 +79,3 @@ showNotification('New Message', 'You have a new message', {
 ## Getting Started
 
 After installation, you can start developing by running the appropriate script as per your target platform (Android, iOS, or web). Enjoy building your app with Hefesto!
-

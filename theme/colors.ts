@@ -1,12 +1,14 @@
 export const colors = {
-  primary: '#0a91c7',
-  primaryBlack: '#009ece',
-  secondary: '#353535',
-  tertiary: '#35C6BF',
-  gray: '#898A8D',
-  ice: '#F9F9F9',
-  white: '#fff',
-  danger: '#FF0058',
+  // Brand
+  primary: '#24A19C',
+  // Neutrals
+  neutralPrimary: '#1B1C1F',
+  neutralSecondary: '#767E8C',
+  neutralLine: '#E0E5ED',
+  neutralBackground: '#FFFFFF',
+  // Utility
+  white: '#FFFFFF',
+  black: '#000000',
   warning: '#FFC700',
-  dark: '#000',
+  danger: '#FF3B30',
 };
