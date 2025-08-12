@@ -1,81 +1,251 @@
-This project is a boilerplate for an Expo-managed React Native application.
+# Todo List Mobile App
 
-## Project Details
+A modern, feature-rich Todo List mobile application built with React Native, TypeScript, and Expo. This app provides an intuitive interface for managing tasks with authentication, customizable themes, and a clean user experience.
 
-- **Name:** trihp driver
-- **Version:** 0.0.1
+## 🚀 Features
 
-## Installation
+### Core Functionality
+- **Task Management**: Create, edit, mark complete, and delete tasks
+- **User Authentication**: Secure sign-in/sign-up with JWT tokens
+- **Customizable Themes**: Choose from multiple color themes (Dark, Brand, Red, Blue)
+- **Task Organization**: Filter and categorize tasks by projects and dates
+- **Responsive Design**: Optimized for both iOS and Android platforms
 
-1. Clone the repository.
-2. Navigate to the project directory.
-3. Install dependencies:
+### Advanced Features
+- **Infinite Scrolling**: Efficient pagination for large task lists
+- **Real-time Updates**: React Query for seamless data synchronization
+- **Offline Support**: AsyncStorage for local data persistence
+- **Push Notifications**: Stay updated on task deadlines
+- **Cross-platform**: Single codebase for iOS, Android, and Web
+
+## 🛠️ Tech Stack
+
+- **Framework**: React Native 0.79.5 with Expo SDK 53
+- **Language**: TypeScript 5.8.3
+- **State Management**: Zustand with persistence
+- **Data Fetching**: TanStack React Query
+- **Navigation**: Expo Router v5
+- **Styling**: NativeWind (Tailwind CSS for React Native)
+- **Authentication**: JWT with secure token storage
+- **Build System**: EAS Build for production builds
+
+## 📱 Screenshots
+
+> **Note**: Add your app screenshots here to showcase the UI/UX
+> 
+> **Recommended screenshots**:
+> - Login/Welcome screen
+> - Home dashboard with user profile
+> - Task creation and management
+> - Theme selection interface
+> - Task filtering and organization
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
+- Expo CLI (`npm install -g @expo/cli`)
+- EAS CLI (`npm install -g eas-cli`)
+- Android Studio (for Android development)
+- Xcode (for iOS development, macOS only)
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone <your-repo-url>
+   cd todoList
    ```
+
+2. **Install dependencies**
+   ```bash
    npm install
    ```
-   or
+
+3. **Start the development server**
+   ```bash
+   npm start
    ```
-   yarn install
+
+4. **Run on device/simulator**
+   ```bash
+   # Android
+   npm run android
+   
+   # iOS
+   npm run ios
+   
+   # Web
+   npm run web
    ```
 
-## Available Scripts
+## 🔐 Authentication
 
-- **Start the project:**
-  ```
-  npm start
-  ```
-- **Run on Android:**
-  ```
-  npm run android
-  ```
-- **Run on iOS:**
-  ```
-  npm run ios
-  ```
-- **Run on the web:**
-  ```
-  npm run web
-  ```
+The app includes demo user accounts for testing:
 
-## Dependencies Overview
+| Username | Password | Role |
+|----------|----------|------|
+| `emilys` | `emilyspass` | Admin |
+| `michaelw` | `michaelwpass` | Admin |
+| `sophiab` | `sophiabpass` | Admin |
 
-The project uses a range of dependencies including:
+## 🏗️ Building & Distribution
 
-- Expo and related tools (expo, expo-status-bar, expo-constants, expo-font, etc.)
-- React Navigation for app navigation
-- Async Storage and device info for persistent storage and device related information
-- Additional libraries like Axios, Day.js, Zustand, and more for varied functionality
-
-## Dev Dependencies
-
-For development, the project leverages:
-
-- TailwindCSS for styling
-- TypeScript for type safety
-- Other tools like module resolvers and SVG transformers
-
-## Notifications & Toast
-
-This project uses [react-native-notifier](https://github.com/MaKorLab/react-native-notifier) for in-app notifications and alerts.
-
-Wrap your application with `NotifierWrapper` in `app/_layout.tsx` (already configured).
-
-Use the utility functions in `utils/toast.ts`:
-
-```ts
-import { showToast, showNotification } from './utils/toast';
-
-// Show an alert toast for success or error
-showToast('success', 'Operation completed successfully');
-
-// Show a custom notification
-showNotification('New Message', 'You have a new message', {
-  duration: 0, // stays until manually hidden
-  showAnimationDuration: 800,
-  onPress: () => console.log('Notification pressed'),
-});
+### Development Build
+```bash
+eas build --profile development --platform android
 ```
 
-## Getting Started
+### Preview Build (for testing)
+```bash
+eas build --profile preview --platform android
+```
 
-After installation, you can start developing by running the appropriate script as per your target platform (Android, iOS, or web). Enjoy building your app with Hefesto!
+### Production Build
+```bash
+eas build --profile production --platform android
+```
+
+## 📱 Preview Build - Test the Real App
+
+### Get the Preview APK
+To test the actual app on your device:
+
+1. **Build the preview version**
+   ```bash
+   eas build --profile preview --platform android
+   ```
+
+2. **Download and install**
+   - Wait for the build to complete
+   - Download the APK file from the EAS build link
+   - Enable "Install unknown apps" on your Android device
+   - Install the APK file
+
+### Test User Accounts
+Use these credentials to explore the app:
+
+| Username | Password | Role |
+|----------|----------|------|
+| `emilys` | `emilyspass` | Admin |
+| `michaelw` | `michaelwpass` | Admin |
+| `sophiab` | `sophiabpass` | Admin |
+
+### What You Can Test
+- **Authentication flow** - Sign in with demo accounts
+- **Theme selection** - Choose from 4 color themes
+- **Task management** - Create, edit, and complete tasks
+- **Navigation** - Explore all app sections and features
+- **Responsive design** - Test on different screen sizes
+
+### Feedback & Issues
+Found a bug or have suggestions? Create an issue in the GitHub repository!
+
+### 🚀 OTA Updates - Get Latest Features Instantly
+Once you have the preview app installed, you can receive updates without reinstalling:
+
+```bash
+# Push updates to all preview users
+eas update --channel preview --message "New features and bug fixes"
+```
+
+**Benefits of OTA updates:**
+- ⚡ **Instant updates** - No need to rebuild and reinstall
+- 🔄 **Seamless experience** - Updates happen in the background
+- 📱 **Always current** - Get the latest features automatically
+- 🧪 **Perfect for testing** - Test new changes quickly
+
+**Note:** OTA updates only work for JavaScript/TypeScript changes. If you add native modules or change permissions, you'll need a new build.
+
+## 🎨 Design Choices & Architecture
+
+### State Management
+- **Zustand**: Lightweight state management with persistence
+- **React Query**: Server state management with caching and synchronization
+- **Secure Storage**: Expo SecureStore for sensitive data (tokens)
+
+### Navigation Structure
+- **Expo Router**: File-based routing with type safety
+- **Tab Navigation**: Bottom tabs for main app sections
+- **Stack Navigation**: Modal screens for authentication and task creation
+
+### UI/UX Decisions
+- **NativeWind**: Consistent styling across platforms
+- **Material Icons**: Familiar iconography for better usability
+- **Responsive Layouts**: Safe area handling and adaptive components
+- **Theme System**: User-selectable color schemes for personalization
+
+## 📁 Project Structure
+
+```
+todoList/
+├── app/                    # Main application screens
+│   ├── (auth)/            # Authentication screens
+│   ├── (tabs)/            # Main app tabs
+│   └── screens/           # Additional screens
+├── components/             # Reusable UI components
+├── hooks/                  # Custom React hooks
+├── store/                  # Zustand state stores
+├── types/                  # TypeScript type definitions
+├── services/               # API and external services
+├── utils/                  # Helper functions
+└── assets/                 # Images, fonts, and static files
+```
+
+## 🚧 Challenges & Solutions
+
+### Challenge 1: Cross-Platform Compatibility
+**Problem**: Ensuring consistent behavior across iOS, Android, and Web platforms.
+**Solution**: Used Expo SDK with platform-specific optimizations and responsive design patterns.
+
+### Challenge 2: State Persistence
+**Problem**: Maintaining user sessions and preferences across app restarts.
+**Solution**: Implemented Zustand with persistence middleware and secure token storage.
+
+### Challenge 3: Performance with Large Task Lists
+**Problem**: Handling potentially large numbers of tasks without performance degradation.
+**Solution**: Implemented infinite scrolling with React Query for efficient data fetching and pagination.
+
+### Challenge 4: Theme Customization
+**Problem**: Allowing users to personalize the app appearance.
+**Solution**: Created a flexible theme system with color presets and dynamic state management.
+
+## 🔄 App Flow
+
+### User Journey
+1. **Launch**: App starts with welcome/onboarding screen
+2. **Authentication**: User signs in with credentials or creates new account
+3. **Theme Selection**: User chooses preferred color theme
+4. **Main Dashboard**: Access to home, projects, upcoming tasks, and inbox
+5. **Task Management**: Create, edit, complete, and organize tasks
+6. **Navigation**: Seamless movement between different app sections
+
+### Task Completion Flow
+1. User views upcoming tasks in the main dashboard
+2. Selects a task to mark as complete
+3. Task status updates in real-time
+4. Completed tasks are filtered or moved to completed section
+5. Progress is synchronized across all app instances
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Support
+
+For support and questions:
+- Create an issue in the GitHub repository
+- Contact: [Your Contact Information]
+
+---
+
+**Built using React Native and Expo**
