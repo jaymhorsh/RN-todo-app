@@ -9,19 +9,17 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.jaymhorsh.todoapp"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "permissions": [
-        "NOTIFICATIONS"
-
-      ],
+      "permissions": ["NOTIFICATIONS"],
       "edgeToEdgeEnabled": true,
-      "package": "com.jaymhorsh_ecee.todoapp"
+      "package": "com.jaymhorsh.todoapp"
     },
     "web": {
       "bundler": "metro",
@@ -43,6 +41,12 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "5229788d-9870-4cc0-a70c-2051b2221d1c"
+      }
+    },
+    "owner": "jaymhorsh"
   }
 }
