@@ -22,3 +22,4 @@ export const refreshAuth = async (payload: RefreshTokenRequest): Promise<Refresh
   });
   return data;
 };
+
