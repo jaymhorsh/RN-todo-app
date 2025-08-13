@@ -27,9 +27,7 @@ const HelpCenter = () => {
     console.log('More topics pressed');
   };
 
-  const filteredTopics = helpTopics.filter(topic =>
-    topic.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredTopics = helpTopics.filter((topic) => topic.title.toLowerCase().includes(searchQuery.toLowerCase()));
 
   return (
     <SafeAreaView className="flex-1 bg-white">
@@ -60,29 +58,18 @@ const HelpCenter = () => {
         <View className="flex-1">
           <View className="flex-row flex-wrap justify-between">
             {filteredTopics.map((topic) => (
-              <TouchableOpacity
-                key={topic.id}
-                className="w-[45%] mb-4"
-                onPress={() => handleTopicPress(topic)}
-              >
+              <TouchableOpacity key={topic.id} className="w-[45%] mb-4" onPress={() => handleTopicPress(topic)}>
                 <View className="bg-neutral-line rounded-xl h-32 justify-center items-center">
                   <Text className="text-3xl mb-2">{topic.icon}</Text>
-                  <Text className="text-sm font-sf-medium text-neutral-primary text-center">
-                    {topic.title}
-                  </Text>
+                  <Text className="text-sm font-sf-medium text-neutral-primary text-center">{topic.title}</Text>
                 </View>
               </TouchableOpacity>
             ))}
           </View>
         </View>
-
         {/* More Topics Button */}
         <View className="mb-6">
-          <TodoButton
-            title="More Topics"
-            onPress={handleMoreTopics}
-            className="bg-brand"
-          />
+          <TodoButton title="More Topics" onPress={handleMoreTopics} className="bg-brand" />
         </View>
       </View>
     </SafeAreaView>
