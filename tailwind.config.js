@@ -25,9 +25,8 @@ module.exports = {
         'sf': ['SFProDisplay-Regular', 'System', 'sans-serif'],
         'sf-regular': ['SFProDisplay-Regular', 'System', 'sans-serif'],
         'sf-medium': ['SFProDisplay-Medium', 'System', 'sans-serif'],
+        'sf-semibold': ['SFProDisplay-Medium', 'System', 'sans-serif'], // Using medium for semibold since we don't have semibold font
         'sf-bold': ['SFProDisplay-Bold', 'System', 'sans-serif'],
-        // Fallback for semibold (using medium)
-        'sf-semibold': ['SFProDisplay-Medium', 'System', 'sans-serif'],
       },
       borderRadius: {
         xl: '12px',

@@ -149,12 +149,7 @@ Once you have the preview app installed, you can receive updates without reinsta
 # Push updates to all preview users
 eas update --channel preview --message "New features and bug fixes"
 ```
-
-**Benefits of OTA updates:**
-- ⚡ **Instant updates** - No need to rebuild and reinstall
-- 🔄 **Seamless experience** - Updates happen in the background
-- 📱 **Always current** - Get the latest features automatically
-- 🧪 **Perfect for testing** - Test new changes quickly
+ect for testing** - Test new changes quickly
 
 **Note:** OTA updates only work for JavaScript/TypeScript changes. If you add native modules or change permissions, you'll need a new build.
 
@@ -192,6 +187,17 @@ todoList/
 ├── utils/                  # Helper functions
 └── assets/                 # Images, fonts, and static files
 ```
+
+## Challenges
+Challenge 1: Waiting on Slow Builds
+Free-tier build queues meant long waits to test updates. I batched changes, skipped unnecessary rebuilds, and used local builds to work faster.
+
+Challenge 2: Making the App Feel the Same Everywhere
+iOS and Android had quirks. I used Expo, added platform-specific tweaks, and tested until both felt consistent.
+
+Challenge 3: Keeping Data Safe and the App Fast
+Tasks had to persist and scroll smoothly. I used Zustand for storage and React Query with infinite scrolling to keep performance snappy.
+
 
 ## 🔄 App Flow
 

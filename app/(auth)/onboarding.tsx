@@ -83,8 +83,8 @@ const Onboarding = () => {
               <TodoButton
                 title="Google"
                 onPress={handleGoogleSignup}
-                className="bg-neutral-line"
-                textClassName="text-neutral-primary"
+                className="bg-neutral-line text-base "
+                textClassName="text-neutral-primary font-sf-semibold"
                 iconName="facebook"
                 // iconName="google"
                 iconPosition="left"

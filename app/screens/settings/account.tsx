@@ -1,6 +1,7 @@
 import TodoButton from '@/components/TodoButton';
 import TodoInput from '@/components/TodoInput';
 import { useUpdateUser } from '@/hooks/settings/useSettings';
+import { useThemeStore } from '@/store';
 import { useAuthStore } from '@/store/authStore';
 import { UpdateUserRequest } from '@/types/settings';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -13,7 +14,7 @@ const Account = () => {
   const router = useRouter();
   const { user } = useAuthStore();
   const { mutate: updateUser, isPending } = useUpdateUser();
-
+const { themeColor } = useThemeStore();
   const [form, setForm] = useState({
     fullName: user ? `${user.firstName} ${user.lastName}` : '',
     email: user?.email || '',
@@ -58,7 +59,7 @@ const Account = () => {
         {/* Header */}
         <View className="flex-row items-center justify-between mt-4 mb-8">
           <TouchableOpacity onPress={() => router.back()}>
-            <MaterialIcons name="arrow-back" size={24} color="#1B1C1F" />
+            <MaterialIcons name="arrow-back-ios" size={24} color="#1B1C1F" />
           </TouchableOpacity>
           <Text className="text-xl font-sf-bold text-neutral-primary">Account</Text>
           <View style={{ width: 24 }} />
@@ -67,9 +68,9 @@ const Account = () => {
         {/* Content Fields */}
         <View className="flex-1">
           {/* Full Name */}
-          <View className="mb-6">
-            <Text className="text-base font-sf-medium text-neutral-primary mb-3">Full Name</Text>
+          <View className="mt-6">
             <TodoInput
+              label="Full Name"
               placeholder="Full name"
               value={form.fullName}
               onChangeText={(value) => handleInputChange('fullName', value)}
@@ -77,31 +78,30 @@ const Account = () => {
               autoCorrect={false}
             />
           </View>
-
           {/* Email */}
-          <View className="mb-6">
-            <Text className="text-base font-sf-medium text-neutral-primary mb-3">Email</Text>
+          <View className="mb-2">
             <TodoInput
+              label="Email"
               placeholder="name@example.com"
               value={form.email}
               onChangeText={(value) => handleInputChange('email', value)}
               keyboardType="email-address"
               autoCapitalize="none"
               autoCorrect={false}
+             
             />
           </View>
 
           {/* Password */}
-          <View className="mb-6">
-            <Text className="text-base font-sf-medium text-neutral-primary mb-3">Password</Text>
-            <TouchableOpacity
-              className="w-full h-14 bg-white border border-neutral-line rounded-xl px-4 items-center justify-center"
-              onPress={handleChangePassword}
-            >
-              <Text className="text-base font-sf-regular text-neutral-secondary">Change Password</Text>
-            </TouchableOpacity>
-          </View>
+          <Text className="text-lg font-sf-semibold text-neutral-primary mb-2">Change Password</Text>
+          <TodoButton
+            title="Change Password"
+            onPress={handleChangePassword}
+            textClassName="text-neutral-secondary text-lg"
+            className="bg-wite border rounded-lg border-neutral-line"
+          />
         </View>
+        
 
         {/* Save Changes Button */}
         <View className="mb-6">
@@ -109,7 +109,7 @@ const Account = () => {
             title={isPending ? 'Saving...' : 'Save Changes'}
             onPress={handleSaveChanges}
             disabled={isPending}
-            className={isPending ? 'bg-neutral-line' : 'bg-brand'}
+            className={isPending ? 'bg-neutral-line' : themeColor}
           />
         </View>
       </View>

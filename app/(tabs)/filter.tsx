@@ -23,14 +23,14 @@ const Filter = () => {
   const renderFilterItem = (item: TodoFilter) => (
     <TouchableOpacity
       key={item.id}
-      className="flex-row items-center py-4 border-b border-neutral-line"
+      className="flex-row items-center py-4"
     >
       <MaterialIcons
         name={item.icon as any}
         size={24}
         color={item.id === 'priority1' ? '#EA4335' : item.id === 'priority3' ? '#FFD93D' : '#767E8C'}
       />
-      <Text className="flex-1 text-base font-sf-medium text-neutral-primary ml-4">
+      <Text className="flex-1 text-lg font-sf-medium text-neutral-primary ml-4">
         {item.label}
       </Text>
       {item.count && (
@@ -45,10 +45,10 @@ const Filter = () => {
   const renderLabelItem = (item: TodoLabel) => (
     <TouchableOpacity
       key={item.id}
-      className="flex-row items-center py-4 border-b border-neutral-line"
+      className="flex-row items-center py-4 "
     >
       <MaterialIcons name={item.icon as any} size={24} color="#767E8C" />
-      <Text className="flex-1 text-base font-sf-medium text-neutral-primary ml-4">
+      <Text className="flex-1 text-lg font-sf-medium text-neutral-primary ml-4">
         {item.label}
       </Text>
       <MaterialIcons name="chevron-right" size={24} color="#767E8C" />
@@ -61,7 +61,7 @@ const Filter = () => {
         {/* Header */}
         <View className="flex-row items-center justify-between mt-4 mb-8">
           <TouchableOpacity>
-            <MaterialIcons name="arrow-back" size={24} color="#1B1C1F" />
+            <MaterialIcons name="arrow-back-ios" size={24} color="#1B1C1F" />
           </TouchableOpacity>
           <Text className="text-xl font-sf-bold text-neutral-primary">Filter & Labels</Text>
           <TouchableOpacity>
@@ -72,7 +72,7 @@ const Filter = () => {
         {/* Filter your task Section */}
         <View className="mb-8">
           <View className="flex-row items-center justify-between mb-4">
-            <Text className="text-lg font-sf-bold text-neutral-primary">Filter your task</Text>
+            <Text className="text-xl font-sf-bold text-neutral-primary">Filter your task</Text>
             <TouchableOpacity
               className="w-8 h-8 rounded-full items-center justify-center"
               style={{ backgroundColor: themeColor }}
@@ -81,12 +81,12 @@ const Filter = () => {
             </TouchableOpacity>
           </View>
 
-          <View className="bg-white rounded-xl border border-neutral-line overflow-hidden">
+          <View className="bg-white rounded-xl overflow-hidden">
             {filterOptions.map((item, index) => (
               <View key={item.id}>
                 {renderFilterItem(item)}
                 {index < filterOptions.length - 1 && (
-                  <View className="h-px bg-neutral-line mx-4" />
+                  <View className="-px bg-neutralline mx-4" />
                 )}
               </View>
             ))}
@@ -105,12 +105,12 @@ const Filter = () => {
             </TouchableOpacity>
           </View>
 
-          <View className="bg-white rounded-xl border border-neutral-line overflow-hidden">
+          <View className="bg-white rounded-xl  overflow-hidden">
             {labelOptions.map((item, index) => (
               <View key={item.id}>
                 {renderLabelItem(item)}
                 {index < labelOptions.length - 1 && (
-                  <View className="h-px bg-neutral-line mx-4" />
+                  <View className="h-px bg-netral-line mx-4" />
                 )}
               </View>
             ))}

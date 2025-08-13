@@ -37,7 +37,7 @@ const HelpCenter = () => {
         {/* Header */}
         <View className="flex-row items-center justify-between mt-4 mb-8">
           <TouchableOpacity onPress={() => router.back()}>
-            <MaterialIcons name="arrow-back" size={24} color="#1B1C1F" />
+            <MaterialIcons name="arrow-back-ios" size={24} color="#1B1C1F" />
           </TouchableOpacity>
           <Text className="text-xl font-sf-bold text-neutral-primary">Help Center</Text>
           <View style={{ width: 24 }} />
@@ -45,7 +45,7 @@ const HelpCenter = () => {
 
         {/* Search Bar */}
         <View className="mb-6">
-          <View className="flex-row items-center bg-neutral-line rounded-xl px-4 py-3">
+          <View className="flex-row items-center bg-neutral-line rounded-xl px-4 py-1">
             <MaterialIcons name="search" size={20} color="#767E8C" />
             <TodoInput
               placeholder="Search for help topics"
@@ -62,10 +62,10 @@ const HelpCenter = () => {
             {filteredTopics.map((topic) => (
               <TouchableOpacity
                 key={topic.id}
-                className="w-[48%] mb-4"
+                className="w-[45%] mb-4"
                 onPress={() => handleTopicPress(topic)}
               >
-                <View className="bg-neutral-line rounded-xl p-4 items-center">
+                <View className="bg-neutral-line rounded-xl h-32 justify-center items-center">
                   <Text className="text-3xl mb-2">{topic.icon}</Text>
                   <Text className="text-sm font-sf-medium text-neutral-primary text-center">
                     {topic.title}

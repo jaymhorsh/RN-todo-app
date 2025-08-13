@@ -4,8 +4,8 @@ import { LoginRequest, RefreshTokenRequest } from '@/types/auth';
 import { showToast } from '@/utils/toast';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'expo-router';
-import { useEffect } from 'react';
 
+// Login mutation hook
 export const useLogin = () => {
   const queryClient = useQueryClient();
   const router = useRouter();
@@ -13,9 +13,7 @@ export const useLogin = () => {
 
   return useMutation({
     mutationFn: (data: LoginRequest) => login(data),
-    onMutate: () => {
-      setLoading(true);
-    },
+    onMutate: () => setLoading(true),
     onSuccess: (data) => {
       const userProfile = {
         id: data.id,
@@ -26,92 +24,62 @@ export const useLogin = () => {
         gender: data.gender,
         image: data.image,
       };
-
-      // Set authentication state
       setAuth(userProfile, data.accessToken, data.refreshToken);
-      // Invalidate and refetch user queries
       queryClient.invalidateQueries({ queryKey: ['user'] });
-
       showToast('success', 'Login successful!');
-      router.replace('/(tabs)/home');
+      router.replace('/createTodo');
     },
     onError: (error: any) => {
       console.error('Login error:', error);
       showToast('error', error?.response?.data?.message || 'Login failed. Please try again.');
     },
-    onSettled: () => {
-      setLoading(false);
-    },
+    onSettled: () => setLoading(false),
   });
 };
 
-// Hook for getting current user
+// Current user query hook
 export const useCurrentUser = () => {
   const { accessToken, isAuthenticated } = useAuthStore();
-
   return useQuery({
     queryKey: ['user', 'current'],
     queryFn: getCurrentUser,
     enabled: !!accessToken && isAuthenticated,
-    staleTime: 5 * 60 * 1000, // 5 minutes
+    staleTime: 5 * 60 * 1000,
     retry: 1,
   });
 };
 
-// Hook for refreshing authentication
+// Refresh auth tokens
 export const useRefreshAuth = () => {
   const { setTokens } = useAuthStore();
-
   return useMutation({
     mutationFn: (data: RefreshTokenRequest) => refreshAuth(data),
-    onSuccess: (data) => {
-      setTokens(data.accessToken, data.refreshToken);
-    },
-    onError: (error: any) => {
-      console.error('Token refresh error:', error);
-    },
+    onSuccess: (data) => setTokens(data.accessToken, data.refreshToken),
+    onError: (error: any) => console.error('Token refresh error:', error),
   });
 };
 
-// Main authentication hook for checking auth state and redirecting
+// Pure auth state hook
 export const useAuth = () => {
   const { isAuthenticated, user, isLoading } = useAuthStore();
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!isLoading) {
-      if (isAuthenticated && user) {
-        router.replace('/home');
-      } else {
-        router.replace('/welcome');
-      }
-    }
-  }, [isAuthenticated, user, isLoading, router]);
-
-  return {
-    isAuthenticated,
-    user,
-    isLoading,
-  };
+  return { isAuthenticated: !!(isAuthenticated && user), user, isLoading };
 };
 
-// Hook for logout
+// Logout hook
 export const useLogout = () => {
   const { logout } = useAuthStore();
   const router = useRouter();
   const queryClient = useQueryClient();
-
   const handleLogout = () => {
     try {
       logout();
       queryClient.clear();
       showToast('success', 'Logged out successfully');
-      router.replace('/welcome');
+      router.replace('/(auth)/welcome');
     } catch (error) {
       console.error('Logout error:', error);
       showToast('error', 'Logout failed. Please try again.');
     }
   };
-
   return { logout: handleLogout };
 };

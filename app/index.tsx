@@ -1,25 +1,16 @@
 import { useAuth } from '@/hooks/auth/useAuth';
 import { Redirect } from 'expo-router';
-import { View, ActivityIndicator } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
 
-const Page = () => {
-  const { isAuthenticated, isLoading } = useAuth();
-
-  // Show loading spinner while checking auth state
+export default function Index() {
+  const { isLoading, isAuthenticated } = useAuth();
   if (isLoading) {
     return (
-      <View className="flex-1 justify-center items-center bg-white">
+      <View className="flex-1 items-center justify-center bg-white">
         <ActivityIndicator size="large" color="#007AFF" />
       </View>
     );
   }
-
-  // Redirect based on authentication state
-  if (isAuthenticated) {
-    return <Redirect href="/(tabs)/home" />;
-  } else {
-    return <Redirect href="/(auth)/welcome" />;
-  }
-};
-
-export default Page;
+  // Correct: authenticated -> home, else -> welcome
+  return <Redirect href={isAuthenticated ? '/home' : '/welcome'} />;
+}

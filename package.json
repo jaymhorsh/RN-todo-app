@@ -36,6 +36,7 @@
     "expo-status-bar": "~2.2.3",
     "expo-symbols": "~0.4.5",
     "expo-system-ui": "~5.0.10",
+    "expo-updates": "~0.28.17",
     "expo-web-browser": "~14.2.0",
     "nativewind": "^4.1.23",
     "react": "19.0.0",
@@ -53,9 +54,7 @@
     "react-native-toast-message": "^2.3.0",
     "react-native-web": "~0.20.0",
     "zod": "^3.25.76",
-    "zustand": "^5.0.5",
-    "expo-dev-client": "~5.2.4",
-    "expo-updates": "~0.28.17"
+    "zustand": "^5.0.5"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

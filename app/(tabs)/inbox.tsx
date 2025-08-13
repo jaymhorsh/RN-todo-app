@@ -15,36 +15,28 @@ const Inbox = () => {
           <View className="flex-row items-center justify-between">
             <View className="flex-1">
               <Text className="text-3xl font-sf-bold text-neutral-primary mb-2">Inbox</Text>
-              <Text className="text-base font-sf-regular text-neutral-secondary">
-                Manage your incoming tasks and messages.
-              </Text>
+              <Text className="text-base font-sf-regular text-neutral-secondary">Manage your incoming tasks and messages.</Text>
             </View>
             <TouchableOpacity>
               <MaterialIcons name="search" size={24} color="#767E8C" />
             </TouchableOpacity>
           </View>
-        </View>
-
-        {/* Main Content Card */}
-        <View className="flex-1 justify-center">
-          <View className="bg-white rounded-2xl shadow-sm border border-neutral-line overflow-hidden">
-            {/* Theme Color Header */}
-            <View 
-              className="h-20 w-full items-center justify-center flex-row"
-              style={{ backgroundColor: themeColor }}
-            >
-              <View className="w-12 h-12 rounded-full bg-white items-center justify-center mr-3">
-                <MaterialIcons name="inbox" size={24} color={themeColor} />
+          {/* Main Content Card */}
+          <View className="mt-6 justify-center">
+            <View className="bg-white rounded-2xl shadow-sm border border-neutral-line overflow-hidden">
+              {/* Theme Color Header */}
+              <View className="h-16 w-full items-center px-6 flex-row" style={{ backgroundColor: themeColor }}>
+                <View className="w-12 h-12 rounded-full bg-white items-center justify-center mr-3">
+                  <MaterialIcons name="inbox" size={20} color={themeColor} />
+                </View>
+                <Text className="text-white text-lg font-sf-medium">Your inbox is empty</Text>
               </View>
-              <Text className="text-white text-lg font-sf-medium">
-                Your inbox is empty
-              </Text>
-            </View>
-            {/* Card Body */}
-            <View className="p-6">
-              <View className="flex-row items-center justify-between">
-                <Text className="text-neutral-secondary font-sf-regular">No new messages</Text>
-                <Text className="text-neutral-secondary font-sf-regular">All caught up!</Text>
+              {/* Card Body */}
+              <View className="p-6">
+                <View className="flex-row items-center justify-between">
+                  <Text className="text-neutral-secondary font-sf-regular">No new messages</Text>
+                  <Text className="text-neutral-secondary font-sf-regular">All caught up!</Text>
+                </View>
               </View>
             </View>
           </View>

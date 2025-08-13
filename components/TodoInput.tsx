@@ -8,6 +8,7 @@ const TodoInput: React.FC<TodoInputProps> = ({
   containerClassName = '',
   inputClassName = '',
   leftIcon,
+  label = '',
   error,
   ...props
 }) => {
@@ -19,8 +20,9 @@ const TodoInput: React.FC<TodoInputProps> = ({
 
   return (
     <View className="mb-4">
+      <Text className="text-lg font-sf-semibold text-neutral-primary mb-2">{label}</Text>
       <View
-        className={`flex-row items-center bg-neutral-background h-[56px] rounded-2xl px-4 border ${
+        className={`flex-row items-center bg-neutral-background h-[56px] rounded-lg px-4 border ${
           error ? 'border-red-500' : 'border-neutral-line'
         } ${containerClassName}`}
       >
@@ -28,7 +30,7 @@ const TodoInput: React.FC<TodoInputProps> = ({
         <TextInput
           placeholderTextColor="#767E8C"
           secureTextEntry={secureTextEntry}
-          className={`flex-1 text-neutral-primary text-base h-14 px-2 ${inputClassName}`}
+          className={`flex-1 text-neutral-primary text-base h-16 ${inputClassName}`}
           {...props}
         />
         {isPassword && (

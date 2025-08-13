@@ -7,6 +7,7 @@ export interface TodoInputProps extends Omit<TextInputProps, 'className'> {
   inputClassName?: string;
   leftIcon?: React.ReactNode;
   error?: string;
+  label?: string;
 }
 
 export interface ControlledInputProps extends Omit<TodoInputProps, 'value' | 'onChangeText'> {

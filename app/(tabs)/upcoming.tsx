@@ -162,7 +162,7 @@ const Upcoming = () => {
         {/* Header */}
         <View className="flex-row items-center justify-between mt-4 mb-6">
           <TouchableOpacity>
-            <MaterialIcons name="arrow-back" size={24} color="#1B1C1F" />
+            <MaterialIcons name="arrow-back-ios" size={24} color="#1B1C1F" />
           </TouchableOpacity>
           <Text className="text-xl font-sf-bold text-neutral-primary">Upcoming</Text>
           <TouchableOpacity>

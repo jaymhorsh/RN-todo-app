@@ -1,9 +1,10 @@
+import { UserProfile } from '@/types/auth';
 import { create } from 'zustand';
 
 interface AppState {
-  user: null | { id: string; name: string };
+  user: null | UserProfile;
   loading: boolean;
-  setUser: (user: { id: string; name: string } | null) => void;
+  setUser: (user: UserProfile | null) => void;
   setLoading: (loading: boolean) => void;
 }
 
@@ -17,4 +18,3 @@ export const useAppStore = create<AppState>((set) => ({
 export { useAppIconStore } from './appIconStore';
 export { useAuthStore } from './authStore';
 export { useThemeStore } from './themeStore';
-

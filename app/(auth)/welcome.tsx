@@ -42,9 +42,9 @@ const Home = () => {
           <View className="flex-1 items-center justify-center">
             <Image source={item.image} className="w-full" resizeMode="contain" />
             <View className="flex flex-row items-center justify-center  w-full">
-              <Text className="text-white text-center mx-10 text-center text-2xl font-sf-bold text-neutral-primary">{item.title}</Text>
+              <Text className="text-center mx-10  text-2xl font-sf-bold text-white">{item.title}</Text>
             </View>
-            <Text className="text-md text-white font-sf-semibold text-center text-[#858585] mx-10 mt-3">{item.description}</Text>
+            <Text className="text-md  font-sf-semibold text-center text-white mx-10 mt-3">{item.description}</Text>
           </View>
         </View>
       );
@@ -55,7 +55,7 @@ const Home = () => {
       <View key={item.id} className="flex bg-white items-center justify-center p-5">
         <Image source={item.image} className="w-full h-[400px] " resizeMode="cover" />
         <View className="flex flex-row items-center justify-center w-full -mt-20">
-          <Text className="text-black text-center mx-10 text-center text-2xl font-sf-bold text-neutral-primary">{item.title}</Text>
+          <Text className="  mx-10 text-center text-2xl font-sf-bold text-neutral-primary">{item.title}</Text>
         </View>
         <Text className="text-md font-sf-semibold text-center text-[#858585] mx-10 mt-3">{item.description}</Text>
       </View>
@@ -63,7 +63,7 @@ const Home = () => {
   };
 
   return (
-    <SafeAreaView className={` bg-white flex-1 h-full items-center justify-between ${isFirstSlide ? 'bg-brand' : 'bg-white'}`}>
+    <SafeAreaView className={` flex-1 px-2 h-full items-center justify-between ${isFirstSlide ? 'bg-brand' : 'bg-white'}`}>
       <TouchableOpacity
         onPress={() => {
           router.replace('/onboarding');

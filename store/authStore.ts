@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 import { deleteToken, getToken, setToken } from '../storage/token';
-import { AuthStore } from '../types/auth';
+import { AuthStore, UserProfile } from '../types/auth';
 
 export const useAuthStore = create<AuthStore>()(
   persist(
@@ -15,17 +15,51 @@ export const useAuthStore = create<AuthStore>()(
 
       // Actions
       setAuth: async (user, accessToken, refreshToken) => {
-        // Store tokens in secure storage
-        await setToken('accessToken', accessToken);
-        await setToken('refreshToken', refreshToken);
-        
-        set({   
-          user,
-          accessToken,
-          refreshToken,
-          isAuthenticated: true,
-          isLoading: false,
-        });
+        try {
+          await setToken('accessToken', accessToken || '');
+          await setToken('refreshToken', refreshToken || '');
+          await setToken('user', JSON.stringify(user));
+
+          set({
+            user,
+            accessToken,
+            refreshToken,
+            isAuthenticated: true,
+            isLoading: false,
+          });
+        } catch (error) {
+          console.error('Failed to set auth:', error);
+          throw error;
+        }
+      },
+
+      loadAuth: async () => {
+        try {
+          set({ isLoading: true });
+
+          const accessToken = await getToken('accessToken');
+          const userData = await getToken('user');
+
+          let user: UserProfile | null = null;
+          if (userData) {
+            try {
+              user = JSON.parse(userData);
+            } catch (parseError) {
+              console.error('Failed to parse user data:', parseError);
+              await deleteToken('user');
+            }
+          }
+
+          set({
+            accessToken,
+            user,
+            isAuthenticated: !!(accessToken && user),
+            isLoading: false,
+          });
+        } catch (error) {
+          set({ isLoading: false });
+          console.error('Failed to load authentication:', error);
+        }
       },
 
       setUser: (user) => {
@@ -33,29 +67,47 @@ export const useAuthStore = create<AuthStore>()(
       },
 
       setTokens: async (accessToken, refreshToken) => {
-        // Store tokens in secure storage
-        await setToken('accessToken', accessToken);
-        await setToken('refreshToken', refreshToken);
-        
-        set({
-          accessToken,
-          refreshToken,
-          isAuthenticated: true,
-        });
+        try {
+          // Store tokens in secure storage - ensure they are strings
+          await setToken('accessToken', accessToken || '');
+          await setToken('refreshToken', refreshToken || '');
+
+          set({
+            accessToken,
+            refreshToken,
+            isAuthenticated: true,
+          });
+        } catch (error) {
+          console.error('Failed to set tokens:', error);
+          throw error;
+        }
       },
 
       logout: async () => {
-        // Remove tokens from secure storage
-        await deleteToken('accessToken');
-        await deleteToken('refreshToken');
-        
-        set({
-          user: null,
-          accessToken: null,
-          refreshToken: null,
-          isAuthenticated: false,
-          isLoading: false,
-        });
+        try {
+          // Remove tokens from secure storage
+          await deleteToken('accessToken');
+          await deleteToken('refreshToken');
+          await deleteToken('user');
+
+          set({
+            user: null,
+            accessToken: null,
+            refreshToken: null,
+            isAuthenticated: false,
+            isLoading: false,
+          });
+        } catch (error) {
+          console.error('Failed to logout:', error);
+          // Still clear the state even if storage cleanup fails
+          set({
+            user: null,
+            accessToken: null,
+            refreshToken: null,
+            isAuthenticated: false,
+            isLoading: false,
+          });
+        }
       },
 
       setLoading: (loading) => {
@@ -68,7 +120,7 @@ export const useAuthStore = create<AuthStore>()(
         getItem: async (name) => {
           try {
             const value = await getToken(name);
-            return value ? JSON.stringify(value) : null;
+            return value;
           } catch (error) {
             console.error('Error getting item from storage:', error);
             return null;
@@ -76,7 +128,9 @@ export const useAuthStore = create<AuthStore>()(
         },
         setItem: async (name, value) => {
           try {
-            await setToken(name, JSON.parse(value));
+            // Ensure the value is a string before storing
+            const stringValue = typeof value === 'string' ? value : JSON.stringify(value);
+            await setToken(name, stringValue);
           } catch (error) {
             console.error('Error setting item in storage:', error);
           }
@@ -93,6 +147,6 @@ export const useAuthStore = create<AuthStore>()(
         user: state.user,
         isAuthenticated: state.isAuthenticated,
       }),
-    }
-  )
+    },
+  ),
 );

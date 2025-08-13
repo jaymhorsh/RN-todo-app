@@ -53,6 +53,7 @@ export interface AuthActions {
   setTokens: (accessToken: string, refreshToken: string) => void;
   logout: () => void;
   setLoading: (loading: boolean) => void;
+  loadAuth: ()=> Promise<void>
 }
 
 export type AuthStore = AuthState & AuthActions;

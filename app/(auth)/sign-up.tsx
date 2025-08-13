@@ -1,4 +1,6 @@
 import TodoButton from '@/components/TodoButton';
+import TodoInput from '@/components/TodoInput';
+import { showToast } from '@/utils/toast';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
@@ -17,52 +19,38 @@ const SignUp = () => {
     if (username.trim() && password.trim()) {
       // Add your sign up logic here
       console.log('Proceeding with sign up...');
+      router.push('/(auth)/sign-in'); // Redirect to sign-in after successful sign-up
+    } else {
+      showToast('error', 'Please fill in all fields');
     }
-  };
-
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
   };
 
   return (
     <SafeAreaView className="flex-1 bg-white">
-      <View className="flex-1 px-6">
+      <View className="flex-1 justify-between px-6">
         {/* Header */}
-        <View className="mt-16 mb-16">
-          <Text className="text-3xl font-sf-bold text-neutral-primary text-center mb-3">
-            Create account
-          </Text>
-          <Text className="text-base font-sf-regular text-neutral-secondary text-center">
-            Create your account and feel the benefits
-          </Text>
-        </View>
+        <View className="mt-14 mb-16">
+          <Text className="text-3xl font-sf-bold text-neutral-primary text-center mb-3">Create account</Text>
+          <Text className="text-base font-sf-regular text-neutral-secondary text-center">Create your account and feel the benefits</Text>
+          {/* Input Section */}
+          <View className=" mt-10 justify-center">
+            {/* Username Field */}
+            <View className="mt-6">
+              <TodoInput
+                label="Username"
+                placeholder="Enter your username"
+                placeholderTextColor="#767E8C"
+                value={username}
+                onChangeText={setUsername}
+                autoCapitalize="none"
+                autoCorrect={false}
+              />
+            </View>
 
-        {/* Input Section */}
-        <View className="flex-1 justify-center">
-          {/* Username Field */}
-          <View className="mb-6">
-            <Text className="text-base font-sf-medium text-neutral-primary mb-3">
-              Username
-            </Text>
-            <TextInput
-              className="w-full h-14 bg-neutral-line rounded-xl px-4 text-base font-sf-regular text-neutral-primary"
-              placeholder="Enter your username"
-              placeholderTextColor="#767E8C"
-              value={username}
-              onChangeText={setUsername}
-              autoCapitalize="none"
-              autoCorrect={false}
-            />
-          </View>
-
-          {/* Password Field */}
-          <View className="mb-6">
-            <Text className="text-base font-sf-medium text-neutral-primary mb-3">
-              Password
-            </Text>
-            <View className="relative">
-              <TextInput
-                className="w-full h-14 bg-neutral-line rounded-xl px-4 pr-12 text-base font-sf-regular text-neutral-primary"
+            {/* Password Field */}
+            <View className="mb-6">
+              <TodoInput
+                label="Password"
                 placeholder="Enter your password"
                 placeholderTextColor="#767E8C"
                 value={password}
@@ -70,20 +58,12 @@ const SignUp = () => {
                 secureTextEntry={!showPassword}
                 autoCapitalize="none"
                 autoCorrect={false}
+                isPassword={true}
               />
-              <TouchableOpacity
-                onPress={togglePasswordVisibility}
-                className="absolute right-4 top-0 bottom-0 justify-center"
-              >
-                <MaterialIcons
-                  name={showPassword ? 'visibility' : 'visibility-off'}
-                  size={24}
-                  color="#767E8C"
-                />
-              </TouchableOpacity>
             </View>
           </View>
         </View>
+
         {/* Sign Up Button */}
         <View className="mb-2">
           <TodoButton

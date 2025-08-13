@@ -1,22 +1,30 @@
+import { useAuthStore } from '@/store';
 import '@/styles/global.css';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { useFonts } from 'expo-font';
-import { SplashScreen, Stack } from 'expo-router';
+import { Stack } from 'expo-router';
+import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { NotifierWrapper } from 'react-native-notifier';
 import 'react-native-reanimated';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { queryClient } from '../utils/reactQueryClient';
 
-export default function RootLayout() {
-  SplashScreen.preventAutoHideAsync();
+SplashScreen.preventAutoHideAsync();
 
-  // Load all SF Pro Display fonts
+export default function RootLayout() {
+  const { loadAuth } = useAuthStore();
+
+  useEffect(() => {
+    loadAuth();
+  }, [loadAuth]);
+
   const [loaded, error] = useFonts({
-    'SFProDisplay-Regular': require('@assets/fonts/SFPRODISPLAYREGULAR.OTF'),
-    'SFProDisplay-Medium': require('@assets/fonts/SFPRODISPLAYMEDIUM.OTF'),
-    'SFProDisplay-Bold': require('@assets/fonts/SFPRODISPLAYBOLD.OTF'),
+    'SFProDisplay-Regular': require('@/assets/fonts/SFPRO-Regular.otf'),
+    'SFProDisplay-Medium': require('@/assets/fonts/SFPRO-medium.otf'),
+    'SFProDisplay-Bold': require('@/assets/fonts/SFPRO-bold.otf'),
   });
 
   useEffect(() => {
@@ -29,19 +37,26 @@ export default function RootLayout() {
     return null;
   }
 
+  if (error) {
+    console.error('Font loading error:', error);
+  }
+
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <NotifierWrapper>
-        <QueryClientProvider client={queryClient}>
-          <Stack>
-            <Stack.Screen name="index" options={{ headerShown: false }} />
-            <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="+not-found" />
-          </Stack>
-          <StatusBar style="auto" />
-        </QueryClientProvider>
-      </NotifierWrapper>
+      <SafeAreaProvider>
+        <NotifierWrapper>
+          <QueryClientProvider client={queryClient}>
+            <Stack>
+              <Stack.Screen name="index" options={{ headerShown: false }} />
+              <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+              <Stack.Screen name="screens/settings" options={{ headerShown: false }} />
+              <Stack.Screen name="+not-found" />
+            </Stack>
+            <StatusBar style="auto" />
+          </QueryClientProvider>
+        </NotifierWrapper>
+      </SafeAreaProvider>
     </GestureHandlerRootView>
   );
 }
