@@ -152,6 +152,14 @@ todoList/
 ```
 
 
+Challenge 1: Waiting on Slow Builds
+Free-tier build queues meant long waits to test updates. I batched changes, skipped unnecessary rebuilds, and used local builds to work faster.
+
+Challenge 2: Making the App Feel the Same Everywhere
+iOS and Android had quirks. I used Expo, added platform-specific tweaks, and tested until both felt consistent.
+
+Challenge 3: Keeping Data Safe and the App Fast
+Tasks had to persist and scroll smoothly. I used Zustand/ expo secure storage for storage and persistence and React Query with infinite scrolling to keep performance snappy.
 
 
 ## 🔄 App Flow
