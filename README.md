@@ -2,7 +2,6 @@
 
 A  Todo List mobile application built with React Native, TypeScript, and Expo. This app provides an intuitive interface for managing tasks with authentication, customizable themes, and a clean user experience.
 
-## 🚀 Features
 ## Features (Implemented)
 - Auth: login, logout, persistent session (SecureStore)
 - Onboarding / welcome flow
@@ -16,6 +15,8 @@ A  Todo List mobile application built with React Native, TypeScript, and Expo. T
 - Splash + font gating (SF Pro)
 - Reusable UI primitives (buttons/cards)
 
+## Screenshots
+[Screenshots.zip](https://collection.cloudinary.com/dbkthd6ck/adda29e90f423a240b76dc559b0078cb)
 ### Core Functionality
 - **Task Management**: Create, edit, mark complete, and delete tasks
 - **User Authentication**: Secure sign-in/sign-up with JWT tokens
