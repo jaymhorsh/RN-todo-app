@@ -59,7 +59,7 @@ const Home = () => {
             </View>
           </View>
           {/* User info card */}
-          {/* <View
+          <View
             style={{
               backgroundColor: '#fff',
               borderRadius: 20,
@@ -98,10 +98,10 @@ const Home = () => {
                 <Text className="text-white text-xs font-sf-semibold">Active</Text>
               </View>
             </View>
-          </View> */}
+          </View>
         </View>
 
-  {/* Quick Create Card */}
+        {/* Quick Create Card */}
         <View className="bg-white rounded-xl shadow-lg overflow-hidden">
           {/* Theme Color Header */}
           <View className="py-6 w-full items-center justify-center flex-row" style={{ backgroundColor: themeColor }} />
