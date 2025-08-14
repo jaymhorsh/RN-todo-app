@@ -54,26 +54,24 @@ const Settings = () => {
           </TouchableOpacity>
         </View>
 
-        {/* Profile Section */}
-        <View className="items-center mb-8">
-          <View className="relative mb-4">
-            <Image
-              source={user?.image ? { uri: user.image } : require('@/assets/logo.png')}
-              className="w-24 h-24 rounded-full border-2 border-neutral-line"
-            />
-            <TouchableOpacity className="absolute bottom-0 right-0 w-8 h-8 bg-green-500 rounded-full items-center justify-center">
-              <MaterialIcons name="edit" size={16} color="white" />
-            </TouchableOpacity>
-          </View>
-          <Text className="text-xl font-sf-bold text-neutral-primary mb-1">
-            {user ? `${user.firstName} ${user.lastName}` : 'User Name'}
-          </Text>
-          <Text className="text-base font-sf-regular text-neutral-secondary">{user ? `@${user.username}` : '@username'}</Text>
-        </View>
-
-        {/* Settings Options */}
         <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
-          {/* First Group */}
+          {/* Profile Section */}
+          <View className="items-center mb-8">
+            <View className="relative mb-4">
+              <Image
+                source={user?.image ? { uri: user.image } : require('@/assets/logo.png')}
+                className="w-24 h-24 rounded-full border-2 border-neutral-line"
+              />
+              <TouchableOpacity className="absolute bottom-0 right-0 w-8 h-8 bg-green-500 rounded-full items-center justify-center">
+                <MaterialIcons name="edit" size={16} color="white" />
+              </TouchableOpacity>
+            </View>
+            <Text className="text-xl font-sf-bold text-neutral-primary mb-1">
+              {user ? `${user.firstName} ${user.lastName}` : 'User Name'}
+            </Text>
+            <Text className="text-base font-sf-regular text-neutral-secondary">{user ? `@${user.username}` : '@username'}</Text>
+          </View>
+          {/* Settings Options */}
           <View className="">
             <TouchableOpacity className="flex-row items-center py-4 border-b border-neutral-line" onPress={() => handleNavigate('account')}>
               <MaterialIcons name="person" size={30} color="#767E8C" />
@@ -112,10 +110,6 @@ const Settings = () => {
                 thumbColor={isDarkMode ? '#24A19C' : '#FFFFFF'}
               />
             </View>
-          </View>
-
-          {/* Second Group */}
-          <View className="mb-6">
             <TouchableOpacity className="flex-row items-center py-4 border-b border-neutral-line">
               <MaterialIcons name="vpn-key" size={24} color="#767E8C" />
               <Text className="flex-1 text-base font-sf-medium text-neutral-primary ml-4">Privacy Policy</Text>
