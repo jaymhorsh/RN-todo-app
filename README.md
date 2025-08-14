@@ -7,13 +7,8 @@ A  Todo List mobile application built with React Native, TypeScript, and Expo. T
 - Onboarding / welcome flow
 - Account update (profile fields)
 - Theme select (multiple palettes, stored globally)
-- In‑app icon selector (UI-level variants)
-- Custom bottom tab bar (active indicator)
-- Pagination (infinite-ready w/ React Query)
-- Settings suite: account, theme, app icon, help center
 - OTA updates (EAS Update channels)
-- Splash + font gating (SF Pro)
-- Reusable UI primitives (buttons/cards)
+
 
 ## Screenshots
 [Screenshots.zip](https://collection.cloudinary.com/dbkthd6ck/adda29e90f423a240b76dc559b0078cb)
@@ -27,12 +22,11 @@ A  Todo List mobile application built with React Native, TypeScript, and Expo. T
 ### Advanced Features
 - **Infinite Scrolling**: Efficient pagination for large task lists
 - **Real-time Updates**: React Query for seamless data synchronization
-- **Offline Support**: AsyncStorage for local data persistence
+- **Offline Support**: SecureStorage for local data persistence
 - **Push Notifications**: Stay updated on task deadlines
-- **Cross-platform**: Single codebase for iOS, Android, and Web
+-
 
 ## 🛠️ Tech Stack
-
 - **Framework**: React Native 0.79.5 with Expo SDK 53
 - **Language**: TypeScript 5.8.3
 - **State Management**: Zustand with persistence
@@ -41,10 +35,6 @@ A  Todo List mobile application built with React Native, TypeScript, and Expo. T
 - **Styling**: NativeWind (Tailwind CSS for React Native)
 - **Authentication**: JWT with secure token storage
 - **Build System**: EAS Build for production builds
-
-## 📱 Screenshots
-
-
 ## 🚀 Quick Start
 
 ### Prerequisites
@@ -167,7 +157,7 @@ Tasks had to persist and scroll smoothly. I used Zustand/ expo secure storage fo
 
 ### User Journey
 1. **Launch**: App starts with welcome/onboarding screen
-2. **Authentication**: User signs in with credentials or creates new account
+2. **Authentication**: User signs in with credentials or creates new account 
 3. **Theme Selection**: User chooses preferred color theme
 4. **Main Dashboard**: Access to home, projects, upcoming tasks, and inbox
 5. **Task Management**: Create, edit, complete, and organize tasks
