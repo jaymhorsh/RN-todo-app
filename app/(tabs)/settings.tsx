@@ -42,7 +42,7 @@ const Settings = () => {
 
   return (
     <SafeAreaView className="flex-1 bg-white">
-      <View className="flex-1 px-6">
+      <View className="flex-1 py-4 px-6">
         {/* Header */}
         <View className="flex-row items-center justify-between mt-4 mb-8">
           <TouchableOpacity onPress={() => router.back()}>
@@ -53,7 +53,6 @@ const Settings = () => {
             <MaterialIcons name="search" size={34} color="#767E8C" />
           </TouchableOpacity>
         </View>
-
         <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
           {/* Profile Section */}
           <View className="items-center mb-8">

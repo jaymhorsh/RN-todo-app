@@ -6,6 +6,7 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
+import { useColorScheme } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { NotifierWrapper } from 'react-native-notifier';
 import 'react-native-reanimated';
@@ -16,6 +17,7 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const { loadAuth } = useAuthStore();
+  const scheme = useColorScheme();
 
   useEffect(() => {
     loadAuth();
@@ -53,7 +55,7 @@ export default function RootLayout() {
               <Stack.Screen name="screens/settings" options={{ headerShown: false }} />
               <Stack.Screen name="+not-found" />
             </Stack>
-            <StatusBar style="auto" />
+            <StatusBar style={scheme === 'dark' ? 'light' : 'dark'} translucent />
           </QueryClientProvider>
         </NotifierWrapper>
       </SafeAreaProvider>
